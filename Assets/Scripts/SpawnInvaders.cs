@@ -5,81 +5,44 @@ using UnityEngine;
 public class SpawnInvaders : MonoBehaviour
 {
     [SerializeField]
-        GameObject InvaderA;
+    GameObject InvaderA;
     [SerializeField]
-        GameObject InvaderB;
+    GameObject InvaderB;
     [SerializeField]
-        GameObject InvaderC;
+    GameObject InvaderC;
 
     [SerializeField]
-        int NInvaders = 0;   //number of Invaders per row
+    int NInvaders = 0;   //number of Invaders per row
     [SerializeField]
-        float InvadersY = 0; //height of Invaders A row (determines the height of Invaders B & C rows)
-
-        int NinvaderB;   //number of Invaders B
-        float InvaderBy; //height of Invader B row
-
-        int NinvaderC= 0;   //number of Invaders C
-        float InvaderCy= 0; //height of Invaders C row
+    float InvadersY = 0; //height of Invaders A first row (determines the height of Invaders B & C rows)
 
     [SerializeField]
-        float DistanceBTW = 0; //Distance between each row of invaders
+    GameObject[] Invaders; // ****indexed variable****
+
+    [SerializeField]
+    float DistanceBTW = 0; //Distance between each row of invaders
 
     private void Awake()
     {
-        if (NInvaders < 9)
-        { 
-            float xMin = -((NInvaders / 2f) - 1/2f);
+        for (int line = 0; line < Invaders.Length; line++)
+        {
+            float xMin = -((NInvaders / 2f) - 1 / 2f);
             float x = xMin;
+            float y = InvadersY;
 
-                for (int i = 1; i <= NInvaders; i++)
-                {GameObject newinvader = Instantiate(InvaderA, transform);          //Instantiate: duplicates given gameobject in given position
-                newinvader.transform.position = new Vector3(x, InvadersY, 0);
-                x += 1f;}
-
-            NinvaderB = NInvaders;
-            NinvaderC = NInvaders;
+            for (int i = 1; i <= NInvaders; i++)
+            {
+                GameObject newinvader = Instantiate(Invaders[line], transform);          //Instantiate: duplicates given gameobject in given position
+                newinvader.transform.position = new Vector3(x, y, 0);
+                x += 1f;
+            }
+            InvadersY = y + DistanceBTW;
         }
-        else
-        {
-            InvadersExcess(); // if NInvaders > 9 no invader will be displayed
-        }
-
-        if (NinvaderB < 9)
-        {
-        InvaderBy = InvadersY + DistanceBTW;
-            float xMin = -((NinvaderB / 2f) - 1 / 2f);
-            float x = xMin;
-
-            for (int i = 1; i <= NinvaderB; i++)
-            {GameObject newinvader = Instantiate(InvaderB, transform);
-                newinvader.transform.position = new Vector3(x, InvaderBy, 0);
-                x += 1f;}
-        }
-        else
-        {
-            InvadersExcess();
-        }
-
-        if (NinvaderC < 9)
-        {
-            InvaderCy = InvaderBy + DistanceBTW;
-            float xMin = -((NinvaderC / 2f) - 1 / 2f);
-            float x = xMin;
-
-            for (int i = 1; i <= NinvaderC; i++)
-            {GameObject newinvader = Instantiate(InvaderC, transform);
-                newinvader.transform.position = new Vector3(x, InvaderCy, 0);
-                x += 1f;}
-        }
-        else
-        {
-            InvadersExcess();
-        }
-    }
-
-    void InvadersExcess()
-    {
-        Debug.Log("<N Invaders> must be lower than 9!");
-    }
+    } 
 }
+
+        
+        
+        
+
+

@@ -13,9 +13,29 @@ public class SpaceShip : MonoBehaviour
     [SerializeField]
     KeyCode RightKey = KeyCode.RightArrow;
 
+    [SerializeField]
+    KeyCode FireKey = KeyCode.Space;
+
+    [SerializeField]
+    GameObject Fire;
+
+    float AddTime = 0f;
+    float Cooldown = 0f;
 
     void Update()
     {
+        AddTime = Time.deltaTime;
+        Cooldown += AddTime;
+
+        if (Input.GetKey(FireKey))
+        {
+            for(int times = 0; times < 2; times++)
+            {
+                Instantiate(Fire.transform);
+                Cooldown = 0f;
+            }
+        }
+
         if (Input.GetKey(LeftKey))
         {
             // x = x0 + v0 * (x,y,z) * t 

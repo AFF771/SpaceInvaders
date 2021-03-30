@@ -121,6 +121,76 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &271554122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 271554125}
+  - component: {fileID: 271554123}
+  - component: {fileID: 271554124}
+  m_Layer: 0
+  m_Name: Destroyer
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &271554123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271554122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c99f58d1839695448a27f39917dce803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &271554124
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271554122}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &271554125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271554122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.5, z: 0}
+  m_LocalScale: {x: 8, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,9 +309,15 @@ MonoBehaviour:
     type: 3}
   InvaderC: {fileID: 5249810250324801118, guid: 9916c6840c50fb44893849c9c81d1dc2,
     type: 3}
-  NInvaders: 5
-  InvadersY: -0.5
-  DistanceBTW: 1
+  NInvaders: 7
+  InvadersY: -1
+  Invaders:
+  - {fileID: 3071435328218428377, guid: 9c9d105cb325e064c98d41d498a94ea2, type: 3}
+  - {fileID: 3071435328218428377, guid: 9c9d105cb325e064c98d41d498a94ea2, type: 3}
+  - {fileID: 9044621509227170160, guid: 4d9081ae79226104cac8fd90f0b849da, type: 3}
+  - {fileID: 9044621509227170160, guid: 4d9081ae79226104cac8fd90f0b849da, type: 3}
+  - {fileID: 5249810250324801118, guid: 9916c6840c50fb44893849c9c81d1dc2, type: 3}
+  DistanceBTW: 0.8
 --- !u!4 &851106669
 Transform:
   m_ObjectHideFlags: 0
@@ -372,6 +448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace1af58ff2c1dc45a7696f310b1e2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 10
+  velocity: 5
   LeftKey: 276
   RightKey: 275
+  FireKey: 32
+  Fire: {fileID: 6996873942577199050, guid: 0b6fd1626a1daa0438198054f0178d0f, type: 3}
