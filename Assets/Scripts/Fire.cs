@@ -4,28 +4,20 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-
     [SerializeField]
     float force = 0f;
 
-    [SerializeField]
-    GameObject Paddle;
-
-    float AddTime= 0f;
-    float Cooldown = 0f;
-
-
-    void Update()
+    void Start()
     {
-        AddTime = Time.deltaTime;
-        Cooldown += AddTime;
+        GetComponent<Rigidbody2D>().AddForce(Vector2.up * force);   // activated when <Fire> instantiated
+    }
 
-        if (Cooldown > 1f)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "EnemyFire")
         {
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up * force);
-            Cooldown = 0f;
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
-
-
     }
 }

@@ -1,60 +1,80 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpaceShip : MonoBehaviour
 {
     [SerializeField]
-    float velocity = 0.5f;
+        GameObject Fire;
+    [SerializeField]
+        Transform nozzle;
 
     [SerializeField]
-    KeyCode LeftKey = KeyCode.LeftArrow;
+        float velocity = 0f;
 
     [SerializeField]
-    KeyCode RightKey = KeyCode.RightArrow;
-
+        Score Score;
     [SerializeField]
-    KeyCode FireKey = KeyCode.Space;
-
+        int Nhearts = 0;    //Nhearts is the number of hearts the palyer has left      
     [SerializeField]
-    GameObject Fire;
+        Text Life;          //Text <Life> displays <Nhearts>
 
-    float AddTime = 0f;
-    float Cooldown = 0f;
+    float minX, maxX;
+    float time;
+
+    void Start()
+    {
+        minX = Camera.main.ViewportToWorldPoint(Vector2.zero).x + 0.3f;
+        maxX = Camera.main.ViewportToWorldPoint(Vector2.one).x - 0.3f;
+        Life.text = "Hearts: " + Nhearts;
+    }
+
+    public void OnCollisionEnter2D (Collision2D collision)
+    {
+        if(collision.gameObject.tag == "EnemyFire")
+        {
+            if (Nhearts > 1)    // player has <Nhearts> HP left
+            {
+                Nhearts -= 1;
+                Destroy(collision.gameObject);
+                Score.Hearts(Nhearts);
+            }
+            else                // player has no HP left
+            {   
+                Destroy(collision.gameObject);
+                Destroy(gameObject);
+                Life.text = "GAME OVER";
+                //Reset Game
+            }
+        }
+    }
 
     void Update()
     {
-        AddTime = Time.deltaTime;
-        Cooldown += AddTime;
+        time += Time.deltaTime;
 
-        if (Input.GetKey(FireKey))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            for(int times = 0; times < 2; times++)
+            if (time > 0.4f) // fire cooldown time
             {
-                Instantiate(Fire.transform);
-                Cooldown = 0f;
+                Instantiate(Fire,nozzle.position,nozzle.rotation);
+                time = 0f;
             }
         }
 
-        if (Input.GetKey(LeftKey))
-        {
-            // x = x0 + v0 * (x,y,z) * t 
-            transform.position += velocity * Vector3.left * Time.deltaTime;
-        }
+        MoveShip(); 
+    }
 
-        else if (Input.GetKey(RightKey))
-        {
-            transform.position += velocity * Vector3.right * Time.deltaTime;
-        }
+    void MoveShip()
+    {
+        float hMov = Input.GetAxis("Horizontal");                                       // hMov = [-1,1]
+        transform.position += hMov * velocity * Vector3.right * Time.deltaTime;         // hMov = 1 -> move right   //  hMov = -2 -> move left  // hMov = 0 -> stactic
 
-        float camerawidth = Camera.main.orthographicSize + 1f;
-        float halfSpaceship = 0.3f;
-
-        // Clamp -> (value, min, max)
-        Vector3 positionAux = transform.position;
-        positionAux.x = Mathf.Clamp(transform.position.x,
-                        -camerawidth + halfSpaceship,
-                        camerawidth - halfSpaceship);
-        transform.position = positionAux;
+        Vector3 position = transform.position;
+        position.x = Mathf.Clamp(position.x, minX, maxX);
+        transform.position = position;
     }
 }
+
+
