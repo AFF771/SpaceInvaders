@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 9044621509227170165}
   - component: {fileID: 9044621509227170162}
   - component: {fileID: 9044621509227170163}
-  - component: {fileID: 3009802941395573523}
   - component: {fileID: 7706478409135431952}
+  - component: {fileID: 3262917102621981482}
   m_Layer: 9
   m_Name: SInvaderB
   m_TagString: Enemies
@@ -103,22 +103,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3009802941395573523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9044621509227170160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48920f9ad6c303d478c425fdf6b2df3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyFire: {fileID: 1697847085376963369, guid: 468a70b058ca3104db37caaf174c0b3c,
-    type: 3}
-  InvaderLife: 5
-  MinFireRate: 2
 --- !u!61 &7706478409135431952
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,3 +129,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.48, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &3262917102621981482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9044621509227170160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f6f254b514a9e4b8e32655a2dd2c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpdateTime: 0
+  EnemyFire: {fileID: 1697847085376963369, guid: 468a70b058ca3104db37caaf174c0b3c,
+    type: 3}
+  InvaderLife: 5
+  MinFireRate: 2

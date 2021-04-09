@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnInvaders : MonoBehaviour
 {
-
     [SerializeField]
     int NInvaders = 0;   //number of Invaders per line
     [SerializeField]
@@ -21,6 +20,7 @@ public class SpawnInvaders : MonoBehaviour
 
     private void Awake()
     {
+
         for (int line = 0; line < Invaders.Length; line++)  // Invaders.Length is the size of the indexed variable <Invaders>
         {
             float xMin = ((-((NInvaders / 2f) - 1 / 2f))-0.2f); // makes sure the horizontal distance between each invader is the same on each row
